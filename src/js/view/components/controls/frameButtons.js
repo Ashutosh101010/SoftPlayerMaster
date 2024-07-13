@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 24..
  */
-import OvenTemplate from "view/engine/OvenTemplate";
+import SoftTemplate from "view/engine/SoftTemplate";
 import LA$ from 'utils/likeA$';
 import {
     ERROR,
@@ -31,7 +31,7 @@ const FrameButtons = function ($container, api) {
         }
     };
 
-    return OvenTemplate($container, "FrameButtons", api.getConfig(), null, events, onRendered, onDestroyed );
+    return SoftTemplate($container, "FrameButtons", api.getConfig(), null, events, onRendered, onDestroyed );
 };
 
 export default FrameButtons;

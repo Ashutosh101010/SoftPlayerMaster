@@ -108,7 +108,7 @@ const Dash = function (element, playerConfig, adTagUrl) {
 
         that = Provider(spec, playerConfig, function (source, lastPlayPosition) {
 
-            OvenPlayerConsole.log("DASH : Attach File : ", source, "lastPlayPosition : " + lastPlayPosition);
+            SoftPlayerConsole.log("DASH : Attach File : ", source, "lastPlayPosition : " + lastPlayPosition);
 
             coveredSetAutoSwitchQualityFor(true);
             sourceOfFile = source.file;
@@ -168,7 +168,7 @@ const Dash = function (element, playerConfig, adTagUrl) {
 
         superPlay_func = that.super('play');
         superDestroy_func = that.super('destroy');
-        OvenPlayerConsole.log("DASH PROVIDER LOADED.");
+        SoftPlayerConsole.log("DASH PROVIDER LOADED.");
 
         dash.on(dashjs.MediaPlayer.events.ERROR, function (error) {
 
@@ -199,7 +199,7 @@ const Dash = function (element, playerConfig, adTagUrl) {
 
         dash.on(dashjs.MediaPlayer.events.PLAYBACK_METADATA_LOADED, function (event) {
 
-            OvenPlayerConsole.log("DASH : PLAYBACK_METADATA_LOADED  : ", dash.getQualityFor("video"), dash.getBitrateInfoListFor('video'), dash.getBitrateInfoListFor('video')[dash.getQualityFor("video")]);
+            SoftPlayerConsole.log("DASH : PLAYBACK_METADATA_LOADED  : ", dash.getQualityFor("video"), dash.getBitrateInfoListFor('video'), dash.getBitrateInfoListFor('video')[dash.getQualityFor("video")]);
 
             let subQualityList = dash.getBitrateInfoListFor('video');
             spec.currentQuality = dash.getQualityFor("video");
@@ -265,7 +265,7 @@ const Dash = function (element, playerConfig, adTagUrl) {
 
             dash = null;
             that.trigger(DASH_DESTROYED);
-            OvenPlayerConsole.log("DASH : PROVIDER DESTROYED.");
+            SoftPlayerConsole.log("DASH : PROVIDER DESTROYED.");
             superDestroy_func();
         };
     } catch (error) {

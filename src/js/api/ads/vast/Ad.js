@@ -87,21 +87,21 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl){
     const initRequest = function () {
         vastClient.get(adTagUrl) .then(res => {
             // Do something with the parsed VAST response
-            OvenPlayerConsole.log("VAST : initRequest()");
+            SoftPlayerConsole.log("VAST : initRequest()");
             ad = res.ads[0];
             if(!ad){
                 throw {code : 401, message : "File not found. Unable to find Linear/MediaFile from URI."};
             }
             vastTracker = new VASTTracker(vastClient, ad, ad.creatives[0]);
 
-            OvenPlayerConsole.log("VAST : created ad tracker.");
+            SoftPlayerConsole.log("VAST : created ad tracker.");
 
             listener = AdsEventsListener(elAdVideo, vastTracker, provider, spec, adButton, textView, OnAdError);
 
             let videoURL =  "";
             if(ad.creatives && ad.creatives.length > 0 && ad.creatives[0].mediaFiles && ad.creatives[0].mediaFiles.length > 0 && ad.creatives[0].mediaFiles[0].fileURL){
                 videoURL = ad.creatives[0].mediaFiles[0].fileURL;
-                OvenPlayerConsole.log("VAST : media url : ", videoURL);
+                SoftPlayerConsole.log("VAST : media url : ", videoURL);
             }
             elAdVideo.src = videoURL;
 
@@ -118,7 +118,7 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl){
 
 
     const checkAutoplaySupport = function () {
-        OvenPlayerConsole.log("VAST : checkAutoplaySupport() ");
+        SoftPlayerConsole.log("VAST : checkAutoplaySupport() ");
 
         let temporarySupportCheckVideo = document.createElement('video');
         temporarySupportCheckVideo.setAttribute('playsinline', 'true');
@@ -142,24 +142,24 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl){
         return new Promise(function(resolve, reject){
             if(!temporarySupportCheckVideo.play){
                 //I can't remember this case...
-                OvenPlayerConsole.log("VAST : !temporarySupportCheckVideo.play");
+                SoftPlayerConsole.log("VAST : !temporarySupportCheckVideo.play");
                 clearAndReport(true, false);
                 resolve();
             }else{
                 let playPromise = temporarySupportCheckVideo.play();
                 if (playPromise !== undefined) {
                     playPromise.then(function(){
-                        OvenPlayerConsole.log("VAST : auto play allowed.");
+                        SoftPlayerConsole.log("VAST : auto play allowed.");
                         // If we make it here, unmuted autoplay works.
                         clearAndReport(true, false);
                         resolve();
                     }).catch(function(error){
-                        OvenPlayerConsole.log("VAST : auto play failed", error.message);
+                        SoftPlayerConsole.log("VAST : auto play failed", error.message);
                         clearAndReport(false, false);
                         resolve();
                     });
                 }else{
-                    OvenPlayerConsole.log("VAST : promise not support");
+                    SoftPlayerConsole.log("VAST : promise not support");
                     //Maybe this is IE11....
                     clearAndReport(true, false);
                     resolve();
@@ -186,10 +186,10 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl){
                     //initControlUI first ->  init ad UI
                     //Maybe google ima waits content loaded internal.
                     if(provider.metaLoaded()){
-                        OvenPlayerConsole.log("VAST : main contents meta loaded.");
+                        SoftPlayerConsole.log("VAST : main contents meta loaded.");
                         checkAutoplaySupport().then(function(){
                             if( (playerConfig.isAutoStart() && !autoplayAllowed) ){
-                                OvenPlayerConsole.log("VAST : autoplayAllowed : false");
+                                SoftPlayerConsole.log("VAST : autoplayAllowed : false");
                                 spec.started = false;
                                 reject(new Error(AUTOPLAY_NOT_ALLOWED));
                             }else{

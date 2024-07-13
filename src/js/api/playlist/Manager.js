@@ -18,7 +18,7 @@ const Manager = function(provider){
     };
     let supportChecker = SupportChecker();
 
-    OvenPlayerConsole.log("PlaylistManager loaded.");
+    SoftPlayerConsole.log("PlaylistManager loaded.");
 
     const makePrettySource = function(source_){
         if (!source_ || !source_.file && !(source_.host || source_.application || source_.stream)) {
@@ -91,7 +91,7 @@ const Manager = function(provider){
 
     that.initPlaylist =(playlist, playerConfig) =>{
 
-        OvenPlayerConsole.log("PlaylistManager setPlaylist() ", playlist);
+        SoftPlayerConsole.log("PlaylistManager setPlaylist() ", playlist);
         const prettiedPlaylist = (_.isArray(playlist) ? playlist : [playlist]).map(function(item){
             if(!_.isArray(item.tracks)) {
                 delete item.tracks;
@@ -198,7 +198,7 @@ const Manager = function(provider){
         return prettiedPlaylist;
     };
     that.getPlaylist = () => {
-        OvenPlayerConsole.log("PlaylistManager getPlaylist() ", spec.playlist);
+        SoftPlayerConsole.log("PlaylistManager getPlaylist() ", spec.playlist);
         return spec.playlist;
     };
     that.getCurrentPlayList = () => {
@@ -220,7 +220,7 @@ const Manager = function(provider){
     };
     that.getCurrentSources = () => {
         if(spec.playlist[spec.currentIndex]){
-            OvenPlayerConsole.log("PlaylistManager getCurrentSources() ", spec.playlist[spec.currentIndex].sources);
+            SoftPlayerConsole.log("PlaylistManager getCurrentSources() ", spec.playlist[spec.currentIndex].sources);
             return spec.playlist[spec.currentIndex].sources;
         }else{
             return null;

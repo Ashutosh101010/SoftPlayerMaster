@@ -45,7 +45,7 @@ const Html5 = function (element, playerConfig, adTagUrl) {
   let that = Provider(spec, playerConfig, null);
   let superDestroy_func = that.super('destroy');
 
-  OvenPlayerConsole.log("HTML5 PROVIDER LOADED.");
+  SoftPlayerConsole.log("HTML5 PROVIDER LOADED.");
 
 
   let cert = null;
@@ -184,7 +184,7 @@ const Html5 = function (element, playerConfig, adTagUrl) {
   }
 
   that.destroy = () => {
-    OvenPlayerConsole.log("HTML5 : PROVIDER DESTROYED.");
+    SoftPlayerConsole.log("HTML5 : PROVIDER DESTROYED.");
 
     superDestroy_func();
   };

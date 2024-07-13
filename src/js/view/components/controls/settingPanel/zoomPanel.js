@@ -1,4 +1,4 @@
-import OvenTemplate from 'view/engine/OvenTemplate';
+import SoftTemplate from 'view/engine/SoftTemplate';
 import PanelManager from "view/global/PanelManager";
 import LA$ from 'utils/likeA$';
 
@@ -47,7 +47,7 @@ const ZoomPanel = function($container, api, data){
         }
     };
 
-    return OvenTemplate($container, "ZoomPanel", api.getConfig(), data, events, onRendered, onDestroyed );
+    return SoftTemplate($container, "ZoomPanel", api.getConfig(), data, events, onRendered, onDestroyed );
 
 };
 

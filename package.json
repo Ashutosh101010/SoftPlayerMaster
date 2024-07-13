@@ -1,20 +1,20 @@
 {
-  "name": "ovenplayer",
+  "name": "softplayer",
   "version": "0.10.37.2",
-  "description": "OvenPlayer is Open-Source HTML5 Player. OvenPlayer supports WebRTC Signaling from OvenMediaEngine for Sub-Second Latency Streaming.",
-  "main": "dist/ovenplayer.js",
+  "description": "softPlayer is Open-Source HTML5 Player. softPlayer supports WebRTC Signaling from softMedia for Sub-Second Latency Streaming.",
+  "main": "dist/softplayer.js",
   "scripts": {
     "watch": "webpack --config webpack.development.js --watch",
     "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AirenSoft/OvenPlayer.git"
+    "url": "git+https://github.com/AirenSoft/softPlayer.git"
   },
   "keywords": [
     "Sub-Second Latency Streaming",
     "WebRTC",
-    "OvenMediaEngine",
+    "softMediaEngine",
     "Low Latency HTTP",
     "MPEG-DASH",
     "HLS",
@@ -25,9 +25,8 @@
   "author": "AirenSoft Co., Ltd.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AirenSoft/OvenPlayer/issues"
+    "url": "https://github.com/AirenSoft/softPlayer/issues"
   },
-  "homepage": "https://www.ovenmediaengine.com/ovenplayer",
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",

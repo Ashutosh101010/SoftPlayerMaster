@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 20..
  */
-import OvenTemplate from "view/engine/OvenTemplate";
+import SoftTemplate from "view/engine/SoftTemplate";
 import {
     READY,
     CONTENT_VOLUME,
@@ -189,7 +189,7 @@ const VolumeButton = function($container, api){
             }
         }
     };
-    let that = OvenTemplate($container, "VolumeButton", api.getConfig(), null, events, onRendered, onDestroyed);
+    let that = SoftTemplate($container, "VolumeButton", api.getConfig(), null, events, onRendered, onDestroyed);
     that.setMouseDown = (state) => {
         mouseDown = state;
     };
@@ -197,7 +197,7 @@ const VolumeButton = function($container, api){
 
     /*or
 
-    return Object.assign(OvenTemplate($container, "VolumeButton", api.getConfig(), null, events, onRendered, onDestroyed), {
+    return Object.assign(SoftTemplate($container, "VolumeButton", api.getConfig(), null, events, onRendered, onDestroyed), {
         setMouseDown: function (state) {
             mouseDown = state;
         }

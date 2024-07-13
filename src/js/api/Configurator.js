@@ -134,7 +134,7 @@ const Configurator = function (options, provider) {
         delete config.duration;
         return config;
     };
-    OvenPlayerConsole.log("Configurator loaded.", options);
+    SoftPlayerConsole.log("Configurator loaded.", options);
     let spec = composeSourceOptions(options);
 
     //spec.isFullscreen = false; //IE 11 can't check current fullscreen state.

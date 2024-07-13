@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 20..
  */
-import OvenTemplate from "view/engine/OvenTemplate";
+import SoftTemplate from "view/engine/SoftTemplate";
 import PlayButton from "view/components/controls/playButton";
 import SettingButton from "view/components/controls/settingButton";
 import FrameButtons from "view/components/controls/frameButtons";
@@ -132,7 +132,7 @@ const Controls = function ($container, api) {
             if (metadata.duration === Infinity) {
 
                 //live
-                OvenPlayerConsole.log("[[[[LIVE MODE]]]]");
+                SoftPlayerConsole.log("[[[[LIVE MODE]]]]");
                 isLiveMode = true;
 
                 if (metadata.type === PROVIDER_HLS) {
@@ -324,7 +324,7 @@ const Controls = function ($container, api) {
         }
     };
 
-    return OvenTemplate($container, "Controls", api.getConfig(), hasPlaylist, events, onRendered, onDestroyed);
+    return SoftTemplate($container, "Controls", api.getConfig(), hasPlaylist, events, onRendered, onDestroyed);
 };
 
 export default Controls;

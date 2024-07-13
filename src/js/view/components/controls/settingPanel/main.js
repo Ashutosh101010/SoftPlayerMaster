@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 26..
  */
-import OvenTemplate from 'view/engine/OvenTemplate';
+import SoftTemplate from 'view/engine/SoftTemplate';
 import PanelManager from "view/global/PanelManager";
 import LA$ from 'utils/likeA$';
 import _ from "utils/underscore";
@@ -267,7 +267,7 @@ const Panels = function ($container, api, data) {
             panelManager.removeLastItem();
         }
     };
-    return OvenTemplate($container, "Panels", api.getConfig(), data, events, onRendered, onDestroyed);
+    return SoftTemplate($container, "Panels", api.getConfig(), data, events, onRendered, onDestroyed);
 
 };
 

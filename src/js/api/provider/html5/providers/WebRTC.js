@@ -77,7 +77,7 @@ const WebRTC = function (element, playerConfig, adTagUrl) {
 
             clearTimeout(connectionCheckTimer);
 
-            OvenPlayerConsole.log("WEBRTC : onBeforeLoad : ", sourceFile);
+            SoftPlayerConsole.log("WEBRTC : onBeforeLoad : ", sourceFile);
 
             if (webrtcLoader) {
                 webrtcLoader.destroy();
@@ -222,7 +222,7 @@ const WebRTC = function (element, playerConfig, adTagUrl) {
     superDestroy_func = that.super('destroy');
     superPlay_func = that.super('play');
 
-    OvenPlayerConsole.log("WEBRTC PROVIDER LOADED.");
+    SoftPlayerConsole.log("WEBRTC PROVIDER LOADED.");
 
     that.removeStream = () => {
         element.srcObject = null;
@@ -235,7 +235,7 @@ const WebRTC = function (element, playerConfig, adTagUrl) {
 
         destroyWebRtcLoader();
 
-        OvenPlayerConsole.log("WEBRTC :  PROVIDER DESTROYED.");
+        SoftPlayerConsole.log("WEBRTC :  PROVIDER DESTROYED.");
 
         superDestroy_func();
 

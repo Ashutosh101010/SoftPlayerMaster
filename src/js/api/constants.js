@@ -126,7 +126,7 @@ export const SYSTEM_TEXT = [
   {
     "lang": "en",
     "ui": {
-      "context": "About OvenPlayer",
+      "context": "About SoftPlayer",
       "controls": {
         "live": "Live Streaming",
         "low_latency_live": "Sub-Second Latency Streaming",
@@ -446,7 +446,7 @@ export const SYSTEM_TEXT = [
   {
     "lang": "pl",
     "ui": {
-      "context": "O OvenPlayer",
+      "context": "O SoftPlayer",
       "controls": {
         "live": "Transmisja na żywo",
         "low_latency_live": "Transmisja z niskim opóźnieniem",

@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 24..
  */
-import OvenTemplate from 'view/engine/OvenTemplate';
+import SoftTemplate from 'view/engine/SoftTemplate';
 import {
     STATE_IDLE,
     STATE_PLAYING,
@@ -59,7 +59,7 @@ const CaptionViewer = function($container, api, playerState){
     const events = {
     };
 
-    return OvenTemplate($container, "CaptionViewer", api.getConfig(), playerState, events, onRendered, onDestroyed );
+    return SoftTemplate($container, "CaptionViewer", api.getConfig(), playerState, events, onRendered, onDestroyed );
 };
 
 export default CaptionViewer;

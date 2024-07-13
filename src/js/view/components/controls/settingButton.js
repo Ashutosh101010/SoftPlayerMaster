@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2019. 5. 17..
  */
-import OvenTemplate from "view/engine/OvenTemplate";
+import SoftTemplate from "view/engine/SoftTemplate";
 import Panels from "view/components/controls/settingPanel/main";
 import PanelManager from "view/global/PanelManager";
 import {
@@ -158,7 +158,7 @@ const SettingButton = function ($container, api) {
         },
     };
 
-    return OvenTemplate($container, "SettingButton", api.getConfig(), null, events, onRendered, onDestroyed);
+    return SoftTemplate($container, "SettingButton", api.getConfig(), null, events, onRendered, onDestroyed);
 };
 
 

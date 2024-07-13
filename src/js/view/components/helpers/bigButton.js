@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 24..
  */
-import OvenTemplate from 'view/engine/OvenTemplate';
+import SoftTemplate from 'view/engine/SoftTemplate';
 import {
     STATE_IDLE,
     STATE_PLAYING,
@@ -40,7 +40,7 @@ const BigButton = function($container, api, playerState){
         }
     };
 
-    return OvenTemplate($container, "BigButton", api.getConfig(), playerState, events, onRendered, onDestroyed );
+    return SoftTemplate($container, "BigButton", api.getConfig(), playerState, events, onRendered, onDestroyed );
 };
 
 export default BigButton;

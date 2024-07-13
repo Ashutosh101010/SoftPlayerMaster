@@ -13,7 +13,7 @@ const Manager = function(container, browserInfo){
     let $container = LA$(container);
     let videoElement = "";
 
-    OvenPlayerConsole.log("MediaManager loaded. browser : ", browserInfo );
+    SoftPlayerConsole.log("MediaManager loaded. browser : ", browserInfo );
 
     const createHtmlVideo = function(isLoop, isAutoStart){
 
@@ -57,7 +57,7 @@ const Manager = function(container, browserInfo){
 
 
     that.empty = () =>{
-        OvenPlayerConsole.log("MediaManager removeElement()");
+        SoftPlayerConsole.log("MediaManager removeElement()");
         $container.removeChild(videoElement);
         videoElement = null;
     };

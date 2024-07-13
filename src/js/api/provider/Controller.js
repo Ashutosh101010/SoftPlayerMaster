@@ -16,13 +16,13 @@ const Controller = function () {
     const Providers = {};
 
     const that = {};
-    OvenPlayerConsole.log("ProviderController loaded.");
+    SoftPlayerConsole.log("ProviderController loaded.");
 
     const registeProvider = (name, provider) => {
         if (Providers[name]) {
             return;
         }
-        OvenPlayerConsole.log("ProviderController _registerProvider() ", name);
+        SoftPlayerConsole.log("ProviderController _registerProvider() ", name);
         Providers[name] = provider;
     };
 
@@ -56,7 +56,7 @@ const Controller = function () {
 
     that.loadProviders = (playlistItem) => {
         const supportedProviderNames = supportChecker.findProviderNamesByPlaylist(playlistItem);
-        OvenPlayerConsole.log("ProviderController loadProviders() ", supportedProviderNames);
+        SoftPlayerConsole.log("ProviderController loadProviders() ", supportedProviderNames);
         if (!supportedProviderNames) {
             return Promise.reject(ERRORS.codes[INIT_UNSUPPORT_ERROR]);
         } else {
@@ -72,18 +72,18 @@ const Controller = function () {
     };
 
     that.findByName = (name) => {
-        OvenPlayerConsole.log("ProviderController findByName() ", name);
+        SoftPlayerConsole.log("ProviderController findByName() ", name);
         return Providers[name];
     };
 
     that.getProviderBySource = (source) => {
         const supportedProviderName = supportChecker.findProviderNameBySource(source);
-        OvenPlayerConsole.log("ProviderController getProviderBySource() ", supportedProviderName);
+        SoftPlayerConsole.log("ProviderController getProviderBySource() ", supportedProviderName);
         return that.findByName(supportedProviderName);
     };
 
     that.isSameProvider = (currentSource, newSource) => {
-        OvenPlayerConsole.log("ProviderController isSameProvider() ", supportChecker.findProviderNameBySource(currentSource), supportChecker.findProviderNameBySource(newSource));
+        SoftPlayerConsole.log("ProviderController isSameProvider() ", supportChecker.findProviderNameBySource(currentSource), supportChecker.findProviderNameBySource(newSource));
         return supportChecker.findProviderNameBySource(currentSource) === supportChecker.findProviderNameBySource(newSource);
     };
 

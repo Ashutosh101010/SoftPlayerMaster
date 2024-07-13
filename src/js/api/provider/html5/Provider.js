@@ -23,7 +23,7 @@ import {
  * @param   onExtendedLoad on load handler
  * */
 const Provider = function (spec, playerConfig, onExtendedLoad) {
-    OvenPlayerConsole.log("[Provider] loaded. ");
+    SoftPlayerConsole.log("[Provider] loaded. ");
 
     let that = {};
     EventEmitter(that);
@@ -36,7 +36,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
     let isPlayingProcessing = false;
 
     if (spec.adTagUrl) {
-        OvenPlayerConsole.log("[Provider] Ad Client - ", playerConfig.getAdClient());
+        SoftPlayerConsole.log("[Provider] Ad Client - ", playerConfig.getAdClient());
         if (playerConfig.getAdClient() === AD_CLIENT_VAST) {
             ads = Vast(elVideo, that, playerConfig, spec.adTagUrl);
         } else {
@@ -68,7 +68,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
 
         } else {
 
-            OvenPlayerConsole.log("source loaded : ", source, "lastPlayPosition : " + lastPlayPosition);
+            SoftPlayerConsole.log("source loaded : ", source, "lastPlayPosition : " + lastPlayPosition);
 
             let previousSource = elVideo.src;
 
@@ -133,7 +133,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
         if (spec.state !== newState) {
             let prevState = spec.state;
 
-            OvenPlayerConsole.log("Provider : setState()", newState);
+            SoftPlayerConsole.log("Provider : setState()", newState);
 
             //ToDo : This is temporary code. If main video occur error, player avoid error message on ad playing.
             if (prevState === STATE_AD_PLAYING && (newState === STATE_ERROR || newState === STATE_IDLE)) {
@@ -155,7 +155,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
             //I prevent these process.
             //}
 
-            OvenPlayerConsole.log("Provider : triggerSatatus", newState);
+            SoftPlayerConsole.log("Provider : triggerSatatus", newState);
             switch (newState) {
                 case STATE_COMPLETE:
                     that.trigger(PLAYER_COMPLETE);
@@ -289,7 +289,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
 
     that.play = () => {
 
-        OvenPlayerConsole.log("Provider : play()");
+        SoftPlayerConsole.log("Provider : play()");
         if (!elVideo) {
             return false;
         }
@@ -305,12 +305,12 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
                 ads.play().then(_ => {
                     //ads play success
                     isPlayingProcessing = false;
-                    OvenPlayerConsole.log("Provider : ads play success");
+                    SoftPlayerConsole.log("Provider : ads play success");
 
                 }).catch(error => {
                     //ads play fail maybe cause user interactive less
                     isPlayingProcessing = false;
-                    OvenPlayerConsole.log("Provider : ads play fail", error);
+                    SoftPlayerConsole.log("Provider : ads play fail", error);
                 });
 
             } else {
@@ -318,7 +318,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
                 if (promise !== undefined) {
                     promise.then(function () {
                         isPlayingProcessing = false;
-                        OvenPlayerConsole.log("Provider : video play success");
+                        SoftPlayerConsole.log("Provider : video play success");
                         /*
                         if(mutedPlay){
                             that.trigger(PLAYER_WARNING, {
@@ -331,7 +331,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
                             });
                         }*/
                     }).catch(error => {
-                        OvenPlayerConsole.log("Provider : video play error", error.message);
+                        SoftPlayerConsole.log("Provider : video play error", error.message);
 
                         isPlayingProcessing = false;
                         /*
@@ -343,7 +343,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
                     });
                 } else {
                     //IE promise is undefinded.
-                    OvenPlayerConsole.log("Provider : video play success (ie)");
+                    SoftPlayerConsole.log("Provider : video play success (ie)");
                     isPlayingProcessing = false;
                 }
             }
@@ -352,7 +352,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
     };
     that.pause = () => {
 
-        OvenPlayerConsole.log("Provider : pause()");
+        SoftPlayerConsole.log("Provider : pause()");
         if (!elVideo) {
             return false;
         }
@@ -422,7 +422,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
             if (spec.sources && spec.sources.length > sourceIndex) {
                 //that.pause();
                 //that.setState(STATE_IDLE);
-                OvenPlayerConsole.log("source changed : " + sourceIndex);
+                SoftPlayerConsole.log("source changed : " + sourceIndex);
                 spec.currentSource = sourceIndex;
 
                 playerConfig.setSourceIndex(sourceIndex);
@@ -501,7 +501,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
         if (!elVideo) {
             return false;
         }
-        OvenPlayerConsole.log("CORE : stop() ");
+        SoftPlayerConsole.log("CORE : stop() ");
 
         elVideo.removeAttribute('preload');
         elVideo.removeAttribute('src');
@@ -527,7 +527,7 @@ const Provider = function (spec, playerConfig, onExtendedLoad) {
             ads = null;
         }
         that.off();
-        OvenPlayerConsole.log("CORE : destroy() player stop, listener, event destroied");
+        SoftPlayerConsole.log("CORE : destroy() player stop, listener, event destroied");
     };
 
     //XXX : I hope using es6 classes. but I think to occur problem from Old IE. Then I choice function inherit. Finally using super function is so difficult.

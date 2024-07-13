@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 20..
  */
-import OvenTemplate from 'view/engine/OvenTemplate';
+import SoftTemplate from 'view/engine/SoftTemplate';
 import Helpers from 'view/components/helpers/main';
 import Controls from 'view/components/controls/main';
 import PanelManager from "view/global/PanelManager";
@@ -28,7 +28,7 @@ import {
     ERROR
 } from "api/constants";
 
-import '../../stylesheet/ovenplayer.less';
+import '../../stylesheet/softplayer.less';
 
 const View = function($container){
     let viewTemplate = "", controls = "", helper = "", $playerRoot, contextPanel = "", api = null, autoHideTimer = "", playerState = STATE_IDLE;
@@ -171,7 +171,7 @@ const View = function($container){
         }
     };
     const events = {
-        "click .ovenplayer" : function(event, $current, template){
+        "click .softplayer" : function(event, $current, template){
 
             if(api){
                 api.trigger(PLAYER_CLICKED, event);
@@ -198,7 +198,7 @@ const View = function($container){
 
             }
         },
-        "dblclick .ovenplayer" : function(event, $current, template){
+        "dblclick .softplayer" : function(event, $current, template){
             if (api) {
                     const touchPosition = getTouchSection(event);
                     const currentPosition = api.getPosition();
@@ -207,19 +207,19 @@ const View = function($container){
                     // seek back 10s
                     if (tapToSeekEnabled && touchPosition == 'left') {
                         const newPosition = Math.max(currentPosition - 10, 0);
-                        OvenPlayerConsole.log(`Seeking to ${newPosition}`);
+                        SoftPlayerConsole.log(`Seeking to ${newPosition}`);
                         api.seek(newPosition);
                     }
 
                     // seek forward 10s
                     if (tapToSeekEnabled && touchPosition === 'right') {
                         const newPosition = Math.min(currentPosition + 10, api.getDuration());
-                        OvenPlayerConsole.log(`Seeking to ${newPosition}`);
+                        SoftPlayerConsole.log(`Seeking to ${newPosition}`);
                         api.seek(newPosition);
                     }
 
                     if (touchPosition === 'middle' || !tapToSeekEnabled) {
-                        OvenPlayerConsole.log(`Toggling fullscreen`);
+                        SoftPlayerConsole.log(`Toggling fullscreen`);
                 if (api.getConfig().expandFullScreenUI && api.toggleFullScreen) {
 
                     if(!(LA$(event.target).closest(".op-controls-container") || LA$(event.target).closest(".op-setting-panel") )){
@@ -230,14 +230,14 @@ const View = function($container){
             }
         },
         //For iOS safari
-        "touchstart .ovenplayer" : function(event, $current, template){
+        "touchstart .softplayer" : function(event, $current, template){
             if (playerState === STATE_PLAYING || playerState === STATE_IDLE  || playerState === STATE_LOADING || (playerState === STATE_AD_PLAYING && screenSize === "xsmall")) {
                 setHide(false, true);
             } else {
                 setHide(false);
             }
         },
-        "mouseenter .ovenplayer" : function(event, $current, template){
+        "mouseenter .softplayer" : function(event, $current, template){
             event.preventDefault();
 
             //small screen with STATE_AD_PLAYING setHide too. becuase mobile hide ad ui.
@@ -247,7 +247,7 @@ const View = function($container){
                 setHide(false);
             }
         },
-        "mousemove .ovenplayer" : function(event, $current, template){
+        "mousemove .softplayer" : function(event, $current, template){
             event.preventDefault();
 
             if (playerState === STATE_PLAYING || playerState === STATE_IDLE || playerState === STATE_LOADING || (playerState === STATE_AD_PLAYING && screenSize === "xsmall")) {
@@ -256,14 +256,14 @@ const View = function($container){
                 setHide(false);
             }
         },
-        "mouseleave .ovenplayer" : function(event, $current, template){
+        "mouseleave .softplayer" : function(event, $current, template){
             event.preventDefault();
 
             if(playerState === STATE_PLAYING  || playerState === STATE_IDLE || playerState === STATE_LOADING || (playerState === STATE_AD_PLAYING && screenSize === "xsmall")){
                 setHide(true);
             }
         },
-        "keydown .ovenplayer" : function(event, $current, template){
+        "keydown .softplayer" : function(event, $current, template){
             let frameMode = api.getFramerate();
             switch(event.keyCode){
                 case 16 :   //shift
@@ -309,7 +309,7 @@ const View = function($container){
             }
 
         },
-        "keyup .ovenplayer" : function(event, $current, template){
+        "keyup .softplayer" : function(event, $current, template){
             switch(event.keyCode) {
                 case 16 :   //shift
                     event.preventDefault();
@@ -318,7 +318,7 @@ const View = function($container){
             }
 
         },
-        "contextmenu .ovenplayer" : function(event, $current, template){
+        "contextmenu .softplayer" : function(event, $current, template){
             event.stopPropagation();
             if(!LA$(event.currentTarget).find("object")){
                 event.preventDefault();
@@ -328,7 +328,7 @@ const View = function($container){
         }
     };
 
-    that = OvenTemplate($container, "View", null, $container.id, events, onRendered, onDestroyed, true);
+    that = SoftTemplate($container, "View", null, $container.id, events, onRendered, onDestroyed, true);
 
     that.getMediaElementContainer = () => {
         return $playerRoot.find(".op-media-element-container").get();

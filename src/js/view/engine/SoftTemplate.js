@@ -17,7 +17,7 @@ import _ from "utils/underscore";
  * @param   isRoot
  *
  * */
-const OvenTemplate = function (container, templateName, playerConfig, data, events, onRendered, onDestroyed, isRoot) {
+const SoftTemplate = function (container, templateName, playerConfig, data, events, onRendered, onDestroyed, isRoot) {
 
     let $container = _.isElement(container) ? LA$(container) : container;
     let $template;
@@ -155,4 +155,4 @@ const OvenTemplate = function (container, templateName, playerConfig, data, even
 };
 
 
-export default OvenTemplate;
+export default SoftTemplate;

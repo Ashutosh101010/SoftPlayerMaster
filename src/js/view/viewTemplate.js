@@ -3,7 +3,7 @@
  */
 
 const ViewTemplate = function (uiText, id) {
-    return `<div class="ovenplayer op-wrapper" tabindex="-1" ${id ? `id = "${id}"` : ``}>` +
+    return `<div class="softplayer op-wrapper" tabindex="-1" ${id ? `id = "${id}"` : ``}>` +
             `<div class="op-ratio"></div>` +
             `<div class="op-player op-clear">` +
                 `<div class="op-core-ui-wrapper op-clear">` +

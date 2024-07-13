@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 24..
  */
-import OvenTemplate from 'view/engine/OvenTemplate';
+import SoftTemplate from 'view/engine/SoftTemplate';
 import {
     STATE_IDLE,
     STATE_PLAYING,
@@ -63,7 +63,7 @@ const MessageBox = function($container, api, message, description, withTimer, ic
         }
     };
 
-    return OvenTemplate($container, "MessageBox", api.getConfig(), data, events, onRendered, onDestroyed );
+    return SoftTemplate($container, "MessageBox", api.getConfig(), data, events, onRendered, onDestroyed );
 };
 
 

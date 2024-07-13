@@ -5,7 +5,7 @@ import _ from "utils/underscore";
 import dom from 'utils/polyfills/dom.js';
 
 /**
- * @brief   It was replace jquery's selector. It Often used by OvenTemplate. (/view/engine/OvenTemplate.js)
+ * @brief   It was replace jquery's selector. It Often used by SoftTemplate. (/view/engine/SoftTemplate.js)
  * @param   selectorOrElement  string or element
  *
  * */

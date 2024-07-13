@@ -23,7 +23,7 @@ const Loader = function () {
                     let vttCues = [];
 
                     if (body.indexOf('WEBVTT') >= 0) {
-                        OvenPlayerConsole.log("WEBVTT LOADED");
+                        SoftPlayerConsole.log("WEBVTT LOADED");
                         let parser = new WebVTT.Parser(window, WebVTT.StringDecoder());
                         vttCues = [];
                         parser.oncue = function (cue) {
@@ -36,13 +36,13 @@ const Loader = function () {
                         // Parse calls onflush internally
                         parser.parse(body);
                     } else if (body.indexOf('SAMI') >= 0) {
-                        OvenPlayerConsole.log("SAMI LOADED");
+                        SoftPlayerConsole.log("SAMI LOADED");
                         let parsedData = SmiParser(body, {fixedLang: language});
                         vttCues = convertToVTTCues(parsedData.result);
                         successCallback(vttCues);
 
                     } else {
-                        OvenPlayerConsole.log("SRT LOADED");
+                        SoftPlayerConsole.log("SRT LOADED");
                         cues = SrtParser(body);
                         vttCues = convertToVTTCues(cues);
                         successCallback(vttCues);

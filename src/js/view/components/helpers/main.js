@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 24..
  */
-import OvenTemplate from "view/engine/OvenTemplate";
+import SoftTemplate from "view/engine/SoftTemplate";
 import BigButton from "view/components/helpers/bigButton";
 import MessageBox from "view/components/helpers/messageBox";
 import CaptionViewer from "view/components/helpers/captionViewer";
@@ -258,7 +258,7 @@ const Helpers = function ($container, api) {
       } else {
         message = "Can not play due to unknown reasons.";
       }
-      OvenPlayerConsole.log("error occured : ", error);
+      SoftPlayerConsole.log("error occured : ", error);
 
       createMessage(message, description, null, UI_ICONS.op_warning + " code-" + error.code, null, true);
     }, template);
@@ -271,7 +271,7 @@ const Helpers = function ($container, api) {
         message = "Network connection is unstable. Check the network connection.";
       }
 
-      OvenPlayerConsole.log(message);
+      SoftPlayerConsole.log(message);
       //createMessage(message, null,5000);
     }, template);
 
@@ -294,7 +294,7 @@ const Helpers = function ($container, api) {
 
   };
 
-  return OvenTemplate($container, "Helpers", api.getConfig(), null, events, onRendered, onDestroyed);
+  return SoftTemplate($container, "Helpers", api.getConfig(), null, events, onRendered, onDestroyed);
 };
 
 export default Helpers;

@@ -19,7 +19,7 @@ const Manager = function(api, playlistIndex){
     let isFisrtLoad = true;
     let isShowing = false;
 
-    OvenPlayerConsole.log("Caption Manager >> ", playlistIndex);
+    SoftPlayerConsole.log("Caption Manager >> ", playlistIndex);
 
 
     let bindTrack = function(track, vttCues){

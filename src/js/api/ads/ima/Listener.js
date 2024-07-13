@@ -65,9 +65,9 @@ const Listener = function(adsManager, provider, adsSpec, OnAdError){
     let isAllAdCompelete = false;   //Post roll을 위해
     let adCompleteCallback = null;
     let currentAd = null;
-    OvenPlayerConsole.log("IMA : Listener Created");
+    SoftPlayerConsole.log("IMA : Listener Created");
      lowLevelEvents[CONTENT_PAUSE_REQUESTED] = (adEvent) => {
-         OvenPlayerConsole.log("IMA LISTENER : ", adEvent.type);
+         SoftPlayerConsole.log("IMA LISTENER : ", adEvent.type);
 
          //This callls when player is playing contents for ad.
          if(adsSpec.started){
@@ -78,7 +78,7 @@ const Listener = function(adsManager, provider, adsSpec, OnAdError){
     };
 
     lowLevelEvents[CONTENT_RESUME_REQUESTED] = (adEvent) => {
-        OvenPlayerConsole.log("IMA LISTENER : ", adEvent.type);
+        SoftPlayerConsole.log("IMA LISTENER : ", adEvent.type);
         //This calls when one ad ended.
         //And this is signal what play the contents.
         adsSpec.active = false;
@@ -94,7 +94,7 @@ const Listener = function(adsManager, provider, adsSpec, OnAdError){
     } ;
 
     lowLevelEvents[ALL_ADS_COMPLETED] = (adEvent) => {
-        OvenPlayerConsole.log("IMA LISTENER : ", adEvent.type);
+        SoftPlayerConsole.log("IMA LISTENER : ", adEvent.type);
 
         isAllAdCompelete = true;
         if(adsSpec.isVideoEnded){
@@ -102,38 +102,38 @@ const Listener = function(adsManager, provider, adsSpec, OnAdError){
         }
     };
     lowLevelEvents[CLICK] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
         provider.trigger(PLAYER_CLICKED, {type : PLAYER_AD_CLICK});
     };
     lowLevelEvents[FIRST_QUARTILE] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
     };
     //
     lowLevelEvents[AD_BUFFERING] = (adEvent) => {
-        OvenPlayerConsole.log("AD_BUFFERING",adEvent.type);
+        SoftPlayerConsole.log("AD_BUFFERING",adEvent.type);
     };
     lowLevelEvents[LOADED] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
         let remainingTime = adsManager.getRemainingTime();
         let ad = adEvent.getAd();
         provider.trigger(STATE_AD_LOADED, {remaining : remainingTime, isLinear : ad.isLinear() });
 
     };
     lowLevelEvents[MIDPOINT] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
     };
     lowLevelEvents[PAUSED] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
         provider.setState(STATE_AD_PAUSED);
     };
     lowLevelEvents[RESUMED] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
         provider.setState(STATE_AD_PLAYING);
     };
 
 
     lowLevelEvents[STARTED] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
         let ad = adEvent.getAd();
         currentAd = ad;
 
@@ -170,7 +170,7 @@ const Listener = function(adsManager, provider, adsSpec, OnAdError){
         }
     };
     lowLevelEvents[COMPLETE] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
         let ad = adEvent.getAd();
         if (ad.isLinear()) {
             clearInterval(intervalTimer);
@@ -179,7 +179,7 @@ const Listener = function(adsManager, provider, adsSpec, OnAdError){
     };
     //User skipped ad. same process on complete.
     lowLevelEvents[SKIPPED] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
 
         let ad = adEvent.getAd();
         if (ad.isLinear()) {
@@ -188,7 +188,7 @@ const Listener = function(adsManager, provider, adsSpec, OnAdError){
         provider.trigger(STATE_AD_COMPLETE);
     };
     lowLevelEvents[USER_CLOSE] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
         let ad = adEvent.getAd();
         if (ad.isLinear()) {
             clearInterval(intervalTimer);
@@ -196,7 +196,7 @@ const Listener = function(adsManager, provider, adsSpec, OnAdError){
         provider.trigger(STATE_AD_COMPLETE);
     };
     lowLevelEvents[THIRD_QUARTILE] = (adEvent) => {
-        OvenPlayerConsole.log(adEvent.type);
+        SoftPlayerConsole.log(adEvent.type);
     };
 
 
@@ -214,7 +214,7 @@ const Listener = function(adsManager, provider, adsSpec, OnAdError){
         return currentAd  ? currentAd.isLinear() : true;
     };
     that.destroy = () =>{
-        OvenPlayerConsole.log("IMAEventListener : destroy()");
+        SoftPlayerConsole.log("IMAEventListener : destroy()");
         //provider.trigger(STATE_AD_COMPLETE);
         Object.keys(lowLevelEvents).forEach(eventName => {
             adsManager.removeEventListener(eventName, lowLevelEvents[eventName]);

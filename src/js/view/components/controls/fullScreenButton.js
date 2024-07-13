@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 26..
  */
-import OvenTemplate from "view/engine/OvenTemplate";
+import SoftTemplate from "view/engine/SoftTemplate";
 import LA$ from "utils/likeA$";
 import {
     AD_CHANGED,
@@ -57,7 +57,7 @@ const FullScreenButton = function ($container, api) {
     };
 
     function resetFullscreenButtonState() {
-        OvenPlayerConsole.log("FULLSCREEN STATE : ", checkFullScreen());
+        SoftPlayerConsole.log("FULLSCREEN STATE : ", checkFullScreen());
         if (checkFullScreen()) {
             if (isForceMode) {
                 document.body.classList.add('op-fullscreen-helper');
@@ -79,7 +79,7 @@ const FullScreenButton = function ($container, api) {
     };
 
     function afterFullScreenChangedCallback() {
-        OvenPlayerConsole.log("afterFullScreenChangedCallback () ");
+        SoftPlayerConsole.log("afterFullScreenChangedCallback () ");
         resetFullscreenButtonState();
         api.trigger(PLAYER_FULLSCREEN_CHANGED, isFullScreen);
     };
@@ -297,7 +297,7 @@ const FullScreenButton = function ($container, api) {
             toggleFullScreen();
         }
     };
-    return OvenTemplate($container, "FullScreenButton", api.getConfig(), null, events, onRendered, onDestroyed);
+    return SoftTemplate($container, "FullScreenButton", api.getConfig(), null, events, onRendered, onDestroyed);
 
 };
 

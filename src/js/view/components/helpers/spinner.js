@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 25..
  */
-import OvenTemplate from 'view/engine/OvenTemplate';
+import SoftTemplate from 'view/engine/SoftTemplate';
 
 const Spinner = function($container, api){
     let $spinner = "";
@@ -14,7 +14,7 @@ const Spinner = function($container, api){
     };
     const events = {};
 
-    return Object.assign(OvenTemplate($container, "Spinner", api.getConfig(), null, events, onRendered, onDestroyed ), {
+    return Object.assign(SoftTemplate($container, "Spinner", api.getConfig(), null, events, onRendered, onDestroyed ), {
         show: function (isShow) {
             if(isShow){
                 $spinner.show();

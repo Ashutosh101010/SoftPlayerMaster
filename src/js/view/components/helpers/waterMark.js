@@ -1,7 +1,7 @@
 /**
  * Created by Sangwon Oh on 2020. 11. 10..
  */
-import OvenTemplate from 'view/engine/OvenTemplate';
+import SoftTemplate from 'view/engine/SoftTemplate';
 import _ from 'utils/underscore';
 import {
     STATE_IDLE,
@@ -63,7 +63,7 @@ const WaterMark = function($container, api, playerState){
 
     };
 
-    return OvenTemplate($container, "WaterMark", api.getConfig(), playerState, events, onRendered, onDestroyed );
+    return SoftTemplate($container, "WaterMark", api.getConfig(), playerState, events, onRendered, onDestroyed );
 };
 
 export default WaterMark;

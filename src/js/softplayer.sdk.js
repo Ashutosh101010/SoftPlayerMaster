@@ -3,13 +3,13 @@ import {isWebRTC, checkAndGetContainerElement} from 'utils/validator';
 import _ from "utils/underscore";
 
 /**
- * Main OvenPlayerSDK object
+ * Main SoftPlayerSDK object
  */
-function ovenPlayerFactory() {
+function softPlayerFactory() {
 
-    const OvenPlayerSDK = {};
+    const SoftPlayerSDK = {};
 
-    const playerList = OvenPlayerSDK.playerList = [];
+    const playerList = SoftPlayerSDK.playerList = [];
 
     /**
      * Create player instance and return it.
@@ -17,11 +17,11 @@ function ovenPlayerFactory() {
      * @param      {string | dom element} container  Id of container element or container element
      * @param      {object} options  The options
      */
-    OvenPlayerSDK.create = function (container, options) {
+    SoftPlayerSDK.create = function (container, options) {
 
-        if (!window.OvenPlayerConsole || Object.keys(window.OvenPlayerConsole).length === 0) {
-            window.OvenPlayerConsole = {};
-            OvenPlayerConsole['log'] = function () {
+        if (!window.SoftPlayerConsole || Object.keys(window.SoftPlayerConsole).length === 0) {
+            window.SoftPlayerConsole = {};
+            SoftPlayerConsole['log'] = function () {
             };
         }
 
@@ -40,7 +40,7 @@ function ovenPlayerFactory() {
      *
      * @return     {array}  The player list.
      */
-    OvenPlayerSDK.getPlayerList = function () {
+    SoftPlayerSDK.getPlayerList = function () {
 
         return playerList;
     };
@@ -51,7 +51,7 @@ function ovenPlayerFactory() {
      * @param      {string}  containerId  The container identifier
      * @return     {obeject | null}  The player instance.
      */
-    OvenPlayerSDK.getPlayerByContainerId = function (containerId) {
+    SoftPlayerSDK.getPlayerByContainerId = function (containerId) {
 
         for (let i = 0; i < playerList.length; i++) {
 
@@ -70,7 +70,7 @@ function ovenPlayerFactory() {
      * @param      {number}  index   The index
      * @return     {object | null}  The player instance.
      */
-    OvenPlayerSDK.getPlayerByIndex = function (index) {
+    SoftPlayerSDK.getPlayerByIndex = function (index) {
 
         const playerInstance = playerList[index];
 
@@ -89,7 +89,7 @@ function ovenPlayerFactory() {
      * @param      {playerInstance}  playerInstance
      * @return     {null}
      */
-    OvenPlayerSDK.removePlayer = function (playerInstance) {
+    SoftPlayerSDK.removePlayer = function (playerInstance) {
 
         for (let i = 0; i < playerList.length; i++) {
 
@@ -105,7 +105,7 @@ function ovenPlayerFactory() {
      * @param      {Object | Array}  source   webrtc source
      * @return     {Array}  Player source Object.
      */
-    OvenPlayerSDK.generateWebrtcUrls = function (sources) {
+    SoftPlayerSDK.generateWebrtcUrls = function (sources) {
         return (_.isArray(sources) ? sources : [sources]).map(function (source, index) {
             if (source.host && isWebRTC(source.host) && source.application && source.stream) {
                 return {
@@ -123,12 +123,12 @@ function ovenPlayerFactory() {
      * @param      {boolean}  boolean   run debug mode or not.
      * @return     {boolean}  run debug mode or not.
      */
-    OvenPlayerSDK.debug = function (isDebugMode) {
+    SoftPlayerSDK.debug = function (isDebugMode) {
 
         if (isDebugMode) {
-            window.OvenPlayerConsole = {log: window['console']['log']};
+            window.SoftPlayerConsole = {log: window['console']['log']};
         } else {
-            window.OvenPlayerConsole = {
+            window.SoftPlayerConsole = {
                 log: function () {
                 }
             };
@@ -136,8 +136,8 @@ function ovenPlayerFactory() {
         return isDebugMode;
     };
 
-    return OvenPlayerSDK;
+    return SoftPlayerSDK;
 }
 
 
-export default ovenPlayerFactory();
+export default softPlayerFactory();

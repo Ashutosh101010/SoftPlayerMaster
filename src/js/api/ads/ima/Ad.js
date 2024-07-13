@@ -63,7 +63,7 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
             }
         });
     };
-    OvenPlayerConsole.log("IMA : started ", "isMobile : ", isMobile, adTagUrl);
+    SoftPlayerConsole.log("IMA : started ", "isMobile : ", isMobile, adTagUrl);
 
     try{
         ADS_MANAGER_LOADED = google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED;
@@ -109,12 +109,12 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
         };
         OnManagerLoaded = function(adsManagerLoadedEvent){
 
-            OvenPlayerConsole.log("IMA : OnManagerLoaded ");
+            SoftPlayerConsole.log("IMA : OnManagerLoaded ");
             let adsRenderingSettings = new google.ima.AdsRenderingSettings();
             adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = true;
             //adsRenderingSettings.useStyledNonLinearAds = true;
             if(adsManager){
-                OvenPlayerConsole.log("IMA : destroy adsManager----");
+                SoftPlayerConsole.log("IMA : destroy adsManager----");
                 listener.destroy();
                 listener = null;
                 adsManager.destroy();
@@ -124,7 +124,7 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
 
             listener = AdsEventsListener(adsManager, provider, spec, OnAdError);
 
-            OvenPlayerConsole.log("IMA : created admanager and listner ");
+            SoftPlayerConsole.log("IMA : created admanager and listner ");
 
             adsManagerLoaded = true;
         };
@@ -135,7 +135,7 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
         adsLoader.addEventListener(ADS_MANAGER_LOADED, OnManagerLoaded, false);
         adsLoader.addEventListener(AD_ERROR, OnAdError, false);
 
-        OvenPlayerConsole.log("IMA : adDisplayContainer initialized");
+        SoftPlayerConsole.log("IMA : adDisplayContainer initialized");
         provider.on(CONTENT_VOLUME, function(data) {
             if(adsManager){
                 if(data.mute){
@@ -148,7 +148,7 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
 
         const setAutoPlayToAdsRequest = function (){
             if(adsRequest){
-                OvenPlayerConsole.log("IMA : setADWillAutoPlay ", "autoplayAllowed",autoplayAllowed, "autoplayRequiresMuted",autoplayRequiresMuted);
+                SoftPlayerConsole.log("IMA : setADWillAutoPlay ", "autoplayAllowed",autoplayAllowed, "autoplayRequiresMuted",autoplayRequiresMuted);
 
                 adsRequest.setAdWillAutoPlay(autoplayAllowed);
                 adsRequest.setAdWillPlayMuted(autoplayRequiresMuted);
@@ -160,7 +160,7 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
 
         const initRequest = function(){
             adsManagerLoaded = false;
-            OvenPlayerConsole.log("IMA : initRequest() AutoPlay Support : ", "autoplayAllowed",autoplayAllowed, "autoplayRequiresMuted",autoplayRequiresMuted);
+            SoftPlayerConsole.log("IMA : initRequest() AutoPlay Support : ", "autoplayAllowed",autoplayAllowed, "autoplayRequiresMuted",autoplayRequiresMuted);
             /*if(adsRequest){
              return false;
              }*/
@@ -176,7 +176,7 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
             adsRequest.adTagUrl = adTagUrl;
 
             adsLoader.requestAds(adsRequest);
-            OvenPlayerConsole.log("IMA : requestAds Complete");
+            SoftPlayerConsole.log("IMA : requestAds Complete");
             //two way what ad starts.
             //adsLoader.requestAds(adsRequest); or  adsManager.start();
             //what? why?? wth??
@@ -184,7 +184,7 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
 
 
         const checkAutoplaySupport = function () {
-            OvenPlayerConsole.log("IMA : checkAutoplaySupport() ");
+            SoftPlayerConsole.log("IMA : checkAutoplaySupport() ");
 
             let temporarySupportCheckVideo = document.createElement('video');
             temporarySupportCheckVideo.setAttribute('playsinline', 'true');
@@ -217,21 +217,21 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
             return new Promise(function(resolve, reject){
                 if(!temporarySupportCheckVideo.play){
                     //I can't remember this case...
-                    OvenPlayerConsole.log("IMA : !temporarySupportCheckVideo.play");
+                    SoftPlayerConsole.log("IMA : !temporarySupportCheckVideo.play");
                     clearAndReport(true, false);
                     resolve();
                 }else{
                     let playPromise = temporarySupportCheckVideo.play();
                     if (playPromise !== undefined) {
                         playPromise.then(function(){
-                            OvenPlayerConsole.log("IMA : auto play allowed.");
+                            SoftPlayerConsole.log("IMA : auto play allowed.");
                             // If we make it here, unmuted autoplay works.
                             clearAndReport(true, false);
                             resolve();
 
                         }).catch(function(error){
 
-                            OvenPlayerConsole.log("IMA : auto play failed", error.message);
+                            SoftPlayerConsole.log("IMA : auto play failed", error.message);
                             clearAndReport(false, false);
                             resolve();
 
@@ -244,19 +244,19 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
                             playPromise.then(function () {
                                 // If we make it here, muted autoplay works but unmuted autoplay does not.
 
-                                OvenPlayerConsole.log("ADS : muted auto play success.");
+                                SoftPlayerConsole.log("ADS : muted auto play success.");
                                 provider.setMute(true);
                                 clearAndReport(true, true);
                                 resolve();
 
                             }).catch(function (error) {
-                                OvenPlayerConsole.log("ADS : muted auto play failed", error.message);
+                                SoftPlayerConsole.log("ADS : muted auto play failed", error.message);
                                 clearAndReport(false, false);
                                 resolve();
                             });*/
                         });
                     }else{
-                        OvenPlayerConsole.log("IMA : promise not support");
+                        SoftPlayerConsole.log("IMA : promise not support");
                         //Maybe this is IE11....
                         clearAndReport(true, false);
                         resolve();
@@ -289,7 +289,7 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
                     const checkAdsManagerIsReady = function(){
                         retryCount ++;
                         if(adsManagerLoaded){
-                            OvenPlayerConsole.log("IMA : ad start!");
+                            SoftPlayerConsole.log("IMA : ad start!");
                             adsManager.init("100%", "100%", google.ima.ViewMode.NORMAL);
                             adsManager.start();
                             spec.started = true;
@@ -311,7 +311,7 @@ const Ad = function(elVideo, provider, playerConfig, adTagUrl, errorCallback){
                     };
                     checkAutoplaySupport().then(function () {
                         if( (playerConfig.isAutoStart() && !autoplayAllowed) ){
-                            OvenPlayerConsole.log("IMA : autoplayAllowed : false");
+                            SoftPlayerConsole.log("IMA : autoplayAllowed : false");
                             spec.started = false;
                             reject(new Error(AUTOPLAY_NOT_ALLOWED));
                         }else{

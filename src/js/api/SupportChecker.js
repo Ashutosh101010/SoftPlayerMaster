@@ -7,7 +7,7 @@ import {analUserAgent} from "utils/browser";
 
 const SupportChecker = function(){
     const that = {};
-    OvenPlayerConsole.log("SupportChecker loaded.");
+    SoftPlayerConsole.log("SupportChecker loaded.");
     let userAgentObject = analUserAgent();
 
     const supportList = [
@@ -197,7 +197,7 @@ const SupportChecker = function(){
     ];
 
     that.findProviderNameBySource = (soruce_) => {
-        OvenPlayerConsole.log("SupportChecker : findProviderNameBySource()", soruce_);
+        SoftPlayerConsole.log("SupportChecker : findProviderNameBySource()", soruce_);
         const source = (soruce_ === Object(soruce_)) ? soruce_ : {};
         for(var i = 0; i < supportList.length; i ++){
             if(supportList[i].checkSupport(source)){
@@ -206,7 +206,7 @@ const SupportChecker = function(){
         }
     };
     that.findProviderNamesByPlaylist = (playlistItem) => {
-        OvenPlayerConsole.log("SupportChecker : findProviderNamesByPlaylist()", playlistItem);
+        SoftPlayerConsole.log("SupportChecker : findProviderNamesByPlaylist()", playlistItem);
         let supportNames = [];
         /*for (let i = playlist_.length; i--;) {
 

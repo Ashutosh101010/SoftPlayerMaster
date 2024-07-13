@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 26..
  */
-import OvenTemplate from 'view/engine/OvenTemplate';
+import SoftTemplate from 'view/engine/SoftTemplate';
 import PanelManager from "view/global/PanelManager";
 import LA$ from 'utils/likeA$';
 import {
@@ -50,7 +50,7 @@ const AudioTrackPanel = function ($container, api, data) {
         }
     };
 
-    return OvenTemplate($container, "AudioTrackPanel", api.getConfig(), data, events, onRendered, onDestroyed);
+    return SoftTemplate($container, "AudioTrackPanel", api.getConfig(), data, events, onRendered, onDestroyed);
 
 };
 

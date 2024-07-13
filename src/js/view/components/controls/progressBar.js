@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 24..
  */
-import OvenTemplate from "view/engine/OvenTemplate";
+import SoftTemplate from "view/engine/SoftTemplate";
 import PanelManager from "view/global/PanelManager";
 import { naturalHms } from "utils/strings"
 import LA$ from "utils/likeA$";
@@ -206,7 +206,7 @@ const ProgressBar = function ($container, api, isAd, metadata) {
             let left = -1 * columnNumber * width * scale;
             let top = -1 * rowNumber * height * scale;
 
-            OvenPlayerConsole.log('Grid Thumbnail:', thumbnailNumber + ': ' + imageNumber + '(' + rowNumber + ', ' + columnNumber + ')');
+            SoftPlayerConsole.log('Grid Thumbnail:', thumbnailNumber + ': ' + imageNumber + '(' + rowNumber + ', ' + columnNumber + ')');
 
             let thumbnails = api.getSources()[api.getCurrentSource()].gridThumbnail;
             let thumbnail = thumbnails[imageNumber];
@@ -453,7 +453,7 @@ const ProgressBar = function ($container, api, isAd, metadata) {
         events = {}
     }
 
-    return OvenTemplate($container, "ProgressBar", api.getConfig(), null, events, onRendered, onDestroyed);
+    return SoftTemplate($container, "ProgressBar", api.getConfig(), null, events, onRendered, onDestroyed);
 };
 
 export default ProgressBar;

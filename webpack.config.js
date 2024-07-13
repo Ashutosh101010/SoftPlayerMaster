@@ -5,7 +5,7 @@ const packageInfo = require('./package.json');
 const config = {
     mode: 'production',
     entry: {
-        'ovenplayer': ['core-js/stable', 'whatwg-fetch', './src/js/ovenplayer.js']
+        'softplayer': ['core-js/stable', 'whatwg-fetch', './src/js/softplayer.js']
     },
     target: ['web', 'es5'],
     resolve: {
@@ -18,7 +18,7 @@ const config = {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
         library: {
-            name: 'OvenPlayer',
+            name: 'SoftPlayer',
             type: 'umd',
             export: 'default'
         },

@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 06/03/2019.
  */
-import OvenTemplate from "view/engine/OvenTemplate";
+import SoftTemplate from "view/engine/SoftTemplate";
 import {naturalHms} from "utils/strings"
 import {playlistItemTemplate} from "view/components/controls/playlistPanelTemplate";
 import LA$ from "utils/likeA$";
@@ -127,7 +127,7 @@ const PlaylistPanel = function($container, api){
         }*/
     };
 
-    return OvenTemplate($container, "PlaylistPanel", api.getConfig(), playlist, events, onRendered, onDestroyed );
+    return SoftTemplate($container, "PlaylistPanel", api.getConfig(), playlist, events, onRendered, onDestroyed );
 };
 
 export default PlaylistPanel;

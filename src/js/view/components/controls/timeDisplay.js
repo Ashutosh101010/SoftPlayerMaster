@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 25..
  */
-import OvenTemplate from "view/engine/OvenTemplate";
+import SoftTemplate from "view/engine/SoftTemplate";
 import { naturalHms } from "utils/strings";
 import {
   CONTENT_TIME,
@@ -130,7 +130,7 @@ const TimeDisplay = function ($container, api, data) {
     },
   };
 
-  return OvenTemplate($container, "TimeDisplay", api.getConfig(), data, events, onRendered, onDestroyed);
+  return SoftTemplate($container, "TimeDisplay", api.getConfig(), data, events, onRendered, onDestroyed);
 };
 
 

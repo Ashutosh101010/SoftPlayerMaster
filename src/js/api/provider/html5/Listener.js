@@ -40,7 +40,7 @@ import {extractVideoElement, errorTrigger} from "api/provider/utils";
 const Listener = function(element, provider, videoEndedCallback, playerConfig){
     const lowLevelEvents = {};
 
-    OvenPlayerConsole.log("EventListener loaded.",element ,provider );
+    SoftPlayerConsole.log("EventListener loaded.",element ,provider );
     const that = {};
 
     let stalled = -1;
@@ -59,20 +59,20 @@ const Listener = function(element, provider, videoEndedCallback, playerConfig){
         //Fires when the browser can start playing the audio/video
         provider.setCanSeek(true);
         provider.trigger(CONTENT_BUFFER_FULL);
-        OvenPlayerConsole.log("EventListener : on canplay");
+        SoftPlayerConsole.log("EventListener : on canplay");
     };
 
     lowLevelEvents.durationchange = () => {
         //Fires when the duration of the audio/video is changed
         lowLevelEvents.progress();
-        OvenPlayerConsole.log("EventListener : on durationchange");
+        SoftPlayerConsole.log("EventListener : on durationchange");
 
         provider.trigger(CONTENT_DURATION_CHANGED);
     };
 
     lowLevelEvents.ended = () => {
         //Fires when the current playlist is ended
-        OvenPlayerConsole.log("EventListener : on ended");
+        SoftPlayerConsole.log("EventListener : on ended");
 
         // IE doesn't set paused property to true. So force set it.
         elVideo.pause();
@@ -113,7 +113,7 @@ const Listener = function(element, provider, videoEndedCallback, playerConfig){
 
         provider.setMetaLoaded();
 
-        OvenPlayerConsole.log("EventListener : on loadedmetadata", metadata);
+        SoftPlayerConsole.log("EventListener : on loadedmetadata", metadata);
         provider.trigger(CONTENT_META, metadata);
     };
 
@@ -131,7 +131,7 @@ const Listener = function(element, provider, videoEndedCallback, playerConfig){
         if(elVideo.currentTime === elVideo.duration){
             return false;
         }
-        OvenPlayerConsole.log("EventListener : on pause");
+        SoftPlayerConsole.log("EventListener : on pause");
 
         provider.setState(STATE_PAUSED);
     };
@@ -156,7 +156,7 @@ const Listener = function(element, provider, videoEndedCallback, playerConfig){
 
     lowLevelEvents.playing = () => {
         //Fires when the audio/video is playing after having been paused or stopped for buffering
-        OvenPlayerConsole.log("EventListener : on playing");
+        SoftPlayerConsole.log("EventListener : on playing");
         if(stalled < 0){
             provider.setState(STATE_PLAYING);
         }
@@ -178,7 +178,7 @@ const Listener = function(element, provider, videoEndedCallback, playerConfig){
             position:  position,
             duration: duration
         });
-        OvenPlayerConsole.log("EventListener : on progress", buffered*100);
+        SoftPlayerConsole.log("EventListener : on progress", buffered*100);
     };
 
 
@@ -251,7 +251,7 @@ const Listener = function(element, provider, videoEndedCallback, playerConfig){
 
     lowLevelEvents.seeking = () => {
         provider.setSeeking(true);
-        OvenPlayerConsole.log("EventListener : on seeking", elVideo.currentTime);
+        SoftPlayerConsole.log("EventListener : on seeking", elVideo.currentTime);
         provider.trigger(CONTENT_SEEK,{
             position : elVideo.currentTime
         });
@@ -260,19 +260,19 @@ const Listener = function(element, provider, videoEndedCallback, playerConfig){
         if(!provider.isSeeking()){
             return;
         }
-        OvenPlayerConsole.log("EventListener : on seeked");
+        SoftPlayerConsole.log("EventListener : on seeked");
         provider.setSeeking(false);
         provider.trigger(CONTENT_SEEKED);
     };
 
     lowLevelEvents.stalled = () => {
-        OvenPlayerConsole.log("EventListener : on stalled");
+        SoftPlayerConsole.log("EventListener : on stalled");
         //This callback does not work on chrome. This calls on Firefox intermittent. Then do not work here. using waiting event.
     };
 
     lowLevelEvents.waiting = () => {
         //Fires when the video stops because it needs to buffer the next frame
-        OvenPlayerConsole.log("EventListener : on waiting", provider.getState());
+        SoftPlayerConsole.log("EventListener : on waiting", provider.getState());
         if(provider.isSeeking()){
             provider.setState(STATE_LOADING);
         }else if(provider.getState() === STATE_PLAYING){
@@ -282,7 +282,7 @@ const Listener = function(element, provider, videoEndedCallback, playerConfig){
     };
 
     lowLevelEvents.volumechange = () => {
-        OvenPlayerConsole.log("EventListener : on volumechange", Math.round(elVideo.volume * 100));
+        SoftPlayerConsole.log("EventListener : on volumechange", Math.round(elVideo.volume * 100));
         provider.trigger(CONTENT_VOLUME, {
             volume: Math.round(elVideo.volume * 100),
             mute: elVideo.muted
@@ -299,7 +299,7 @@ const Listener = function(element, provider, videoEndedCallback, playerConfig){
             4: PLAYER_FILE_ERROR
         }[code]||0);
 
-        OvenPlayerConsole.log("EventListener : on error", convertedErroCode);
+        SoftPlayerConsole.log("EventListener : on error", convertedErroCode);
         errorTrigger(ERRORS.codes[convertedErroCode], provider);
     };
 
@@ -309,7 +309,7 @@ const Listener = function(element, provider, videoEndedCallback, playerConfig){
     });
 
     that.destroy = () =>{
-        OvenPlayerConsole.log("EventListener : destroy()");
+        SoftPlayerConsole.log("EventListener : destroy()");
 
         Object.keys(lowLevelEvents).forEach(eventName => {
             elVideo.removeEventListener(eventName, lowLevelEvents[eventName]);

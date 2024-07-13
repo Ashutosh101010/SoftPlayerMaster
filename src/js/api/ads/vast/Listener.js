@@ -88,7 +88,7 @@ const Listener = function(elAdVideo, vastTracker, provider, adsSpec, adButton, t
 
 
     lowLevelEvents.error = function(){
-        OvenPlayerConsole.log("VAST : listener : error.", elAdVideo.error);
+        SoftPlayerConsole.log("VAST : listener : error.", elAdVideo.error);
         console.log("VAST : listener : error.", elAdVideo.error);
         let error = {};
         const code = (elAdVideo.error && elAdVideo.error.code) || 0;
@@ -135,11 +135,11 @@ const Listener = function(elAdVideo, vastTracker, provider, adsSpec, adButton, t
         });
     };
     lowLevelEvents.volumechange = function(event){
-        OvenPlayerConsole.log("VAST : listener : Ad Video Volumechange.");
+        SoftPlayerConsole.log("VAST : listener : Ad Video Volumechange.");
         vastTracker.setMuted(event.target.muted);
     };
     lowLevelEvents.loadedmetadata = function(){
-        OvenPlayerConsole.log("VAST : listener : Ad CONTENT LOADED .");
+        SoftPlayerConsole.log("VAST : listener : Ad CONTENT LOADED .");
 
         //Flash play is very fast...
         if(STATE_PLAYING === provider.getState()){
@@ -154,22 +154,22 @@ const Listener = function(elAdVideo, vastTracker, provider, adsSpec, adButton, t
 
     vastTracker.on('skip', () => {
         // skip tracking URLs have been called
-        OvenPlayerConsole.log("VAST : listener : skipped");
+        SoftPlayerConsole.log("VAST : listener : skipped");
     });
 
     vastTracker.on('mute', () => {
         // mute tracking URLs have been called
-        OvenPlayerConsole.log("VAST : listener : muted");
+        SoftPlayerConsole.log("VAST : listener : muted");
     });
 
     vastTracker.on('unmute', () => {
         // unmute tracking URLs have been called
-        OvenPlayerConsole.log("VAST : listener : unmuted");
+        SoftPlayerConsole.log("VAST : listener : unmuted");
     });
 
     vastTracker.on('resume', () => {
         // resume tracking URLs have been called
-        OvenPlayerConsole.log("VAST : listener : vastTracker resumed.");
+        SoftPlayerConsole.log("VAST : listener : vastTracker resumed.");
 
         //prevent to set STATE_AD_PLAYING when first play.
         if(adsSpec.started){
@@ -179,13 +179,13 @@ const Listener = function(elAdVideo, vastTracker, provider, adsSpec, adButton, t
     });
     vastTracker.on('pause', () => {
         // pause tracking URLs have been called
-        OvenPlayerConsole.log("VAST : listener : vastTracker paused.");
+        SoftPlayerConsole.log("VAST : listener : vastTracker paused.");
         provider.setState(STATE_AD_PAUSED);
     });
 
     vastTracker.on('clickthrough', url => {
         // Open the resolved clickThrough url
-        OvenPlayerConsole.log("VAST : listener : clickthrough :", url);
+        SoftPlayerConsole.log("VAST : listener : clickthrough :", url);
         //document.location.href = url;
         window.open(url, '_blank');
 
@@ -209,11 +209,11 @@ const Listener = function(elAdVideo, vastTracker, provider, adsSpec, adButton, t
         }
     });
     vastTracker.on('rewind', () => {
-        OvenPlayerConsole.log("VAST : listener : rewind");
+        SoftPlayerConsole.log("VAST : listener : rewind");
     });
 
     vastTracker.on('start', () => {
-        OvenPlayerConsole.log("VAST : listener : started");
+        SoftPlayerConsole.log("VAST : listener : started");
 
         adsSpec.started = true;
         adsSpec.active = true;
@@ -224,18 +224,18 @@ const Listener = function(elAdVideo, vastTracker, provider, adsSpec, adButton, t
     });
     vastTracker.on('firstQuartile', () => {
         // firstQuartile tracking URLs have been called
-        OvenPlayerConsole.log("VAST : listener : firstQuartile");
+        SoftPlayerConsole.log("VAST : listener : firstQuartile");
     });
     vastTracker.on('midpoint', () => {
-        OvenPlayerConsole.log("VAST : listener : midpoint");
+        SoftPlayerConsole.log("VAST : listener : midpoint");
     });
     vastTracker.on('thirdQuartile', () => {
-        OvenPlayerConsole.log("VAST : listener : thirdQuartile");
+        SoftPlayerConsole.log("VAST : listener : thirdQuartile");
     });
 
     vastTracker.on('creativeView', () => {
         // impression tracking URLs have been called
-        OvenPlayerConsole.log("VAST : listener : creativeView");
+        SoftPlayerConsole.log("VAST : listener : creativeView");
 
     });
 
@@ -245,7 +245,7 @@ const Listener = function(elAdVideo, vastTracker, provider, adsSpec, adButton, t
     });
 
     that.destroy = () =>{
-        OvenPlayerConsole.log("EventListener : destroy()");
+        SoftPlayerConsole.log("EventListener : destroy()");
         textView.removeEventListener("click", skipButtonClicked, false);
         Object.keys(lowLevelEvents).forEach(eventName => {
             elAdVideo.removeEventListener(eventName, lowLevelEvents[eventName]);

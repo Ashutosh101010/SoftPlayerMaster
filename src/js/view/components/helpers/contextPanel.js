@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 8. 1..
  */
-import OvenTemplate from 'view/engine/OvenTemplate';
+import SoftTemplate from 'view/engine/SoftTemplate';
 import LA$ from 'utils/likeA$';
 
 const ContextPanel = function($container, api, position){
@@ -25,13 +25,13 @@ const ContextPanel = function($container, api, position){
             event.preventDefault();
 
             window.open(
-                'https://github.com/AirenSoft/OvenPlayer',
+                'https://github.com/AirenSoft/SoftPlayer',
                 '_blank'
             );
         }
     };
 
-    return OvenTemplate($container, "ContextPanel", api.getConfig(), position, events, onRendered, onDestroyed );
+    return SoftTemplate($container, "ContextPanel", api.getConfig(), position, events, onRendered, onDestroyed );
 
 };
 

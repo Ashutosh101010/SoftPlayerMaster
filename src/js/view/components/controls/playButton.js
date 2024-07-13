@@ -1,7 +1,7 @@
 /**
  * Created by hoho on 2018. 7. 24..
  */
-import OvenTemplate from "view/engine/OvenTemplate";
+import SoftTemplate from "view/engine/SoftTemplate";
 import {
     ERROR,
     STATE_IDLE,
@@ -139,7 +139,7 @@ const PlayButton = function ($container, api) {
         }
     };
 
-    return OvenTemplate($container, "PlayButton", api.getConfig(), null, events, onRendered, onDestroyed );
+    return SoftTemplate($container, "PlayButton", api.getConfig(), null, events, onRendered, onDestroyed );
 };
 
 export default PlayButton;
